@@ -63,9 +63,11 @@ I evaluated my model using the regression results displayed below. I also visual
 ![Feature Importance](results/feature_importance.png)
 
 `Testing RMSE = 3.38, Test MAE = 2.58, Test R2 = 0.31`
+
 `Training RMSE = 0.97, Train MAE = 0.70, Train R2 = 0.95`
 
 My training R2 indicates that the model fits the training data well, explaining 95% of the variance in QB fantasy performance.
+
 My testing R2 indicates that on future data, my model explains 31% of variance in QB fantasy performance. The RMSE of 3.38 implies that my predictions, on average, will vary from the true value by 3.38 fantasy points per game.
 
 The gap between my training and testing regression outputs suggest that there is overfitting in my model. These could be due to the relatively small dataset, noisy data, or the unpredictable nature of NFL games. This model can still capture general trends that may differentiate high-performing QBs from low-performing QBs. 
@@ -76,6 +78,7 @@ Other features like strength of schedule, team performance, and injury history c
 After training, I applied my model to the most recent NFL season, 2024, to generate predictions for QBs expected 2025 fantasy performance. The output is in [predictions_2025.csv](results/predictions_2025.csv).
 
 The top 32 QBs for the 2025 season are shown below:
+
 ![Top 32 QBs](results/top32_predictions.png)
 
 ## Required Libraries
