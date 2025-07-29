@@ -1,0 +1,25 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Kaggle Project",
+            "username": "root",
+            "database": "my_database",
+            "password": ""
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Fantasy_Football",
+            "database": "${workspaceFolder:Fantasy Football QB Predictor}/fantasy_football"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
