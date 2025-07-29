@@ -81,13 +81,13 @@ y_test_pred = model.predict(X_test)
 test_rmse = mean_squared_error(y_test, y_test_pred) ** .5
 test_mae = mean_absolute_error(y_test, y_test_pred)
 test_r2 = r2_score(y_test, y_test_pred)
-print(f'Testing RMSE = {test_rmse:.2f}, Test MAE = {test_mae:.2f}, Test R2 = {test_r2:.2f}')
+print(f'Test RMSE = {test_rmse:.2f}, Test MAE = {test_mae:.2f}, Test R2 = {test_r2:.2f}')
 
 y_train_pred = model.predict(X_train)
 train_rmse = mean_squared_error(y_train,y_train_pred) ** .5
 train_mae = mean_absolute_error(y_train, y_train_pred)
 train_r2 = r2_score(y_train, y_train_pred)
-print(f'Training RMSE = {train_rmse:.2f}, Train MAE = {train_mae:.2f}, Train R2 = {train_r2:.2f}')
+print(f'Train RMSE = {train_rmse:.2f}, Train MAE = {train_mae:.2f}, Train R2 = {train_r2:.2f}')
 
 # Use separated 2024 data to predict QB average fantasy points per game for upcoming 2025 season
 X_2024 = df_2024[feature_names]

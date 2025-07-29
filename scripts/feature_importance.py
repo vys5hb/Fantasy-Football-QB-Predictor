@@ -18,7 +18,7 @@ def plot_xgboost_feature_importance(model, feature_names, results_path='results'
     sns.barplot(x='Importance', y='Feature', data=importance_df)
     plt.title('XGBoost Feature Importance')
     plt.tight_layout()
-    # Save plot to results folder
+    # Save plot to "results" folder
     plt.savefig(os.path.join(results_path, 'feature_importance.png'))
     plt.close()
     

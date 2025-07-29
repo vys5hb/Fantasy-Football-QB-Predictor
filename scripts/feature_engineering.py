@@ -26,7 +26,7 @@ def cleaning_data(df):
     df = df[df['Year'] >= current_year - 13]
     df = df[df['FantPts'] >= 30].copy()
     
-    # Create new features of averages
+    # Create new features for season averages
     df.loc[:, 'CompProp'] = round(df['Cmp'] / df['PassAtts'], 2)
     df.loc[:, 'PassAtts/G'] = round(df['PassAtts'] / df['G'], 2)
     df.loc[:, 'PassYds/G'] = round(df['PassYds'] / df['G'], 2)
