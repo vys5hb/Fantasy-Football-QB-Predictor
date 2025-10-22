@@ -69,7 +69,9 @@ I evaluated my model using the regression results displayed below. I also visual
 ![Feature Importance](results/feature_importance.png)
 
 `Training RMSE = 2.37, Train MAE = 1.88, Train R2 = 0.69`
+
 `Validation RMSE = 3.48, Validation MAE = 2.75, Validation R2 = 0.25`
+
 `Testing RMSE = 3.80, Test MAE = 3.02, Test R2 = 0.39`
 
 To prevent overfitting, I tried to limit the gap between training to validation & testing regression outputs, even at the cost of hurting overall model performance. This is to allow the model to predict new data with lower variance than if there were to be a large gap between training to validation & testing regression outputs.
