@@ -83,7 +83,7 @@ After training, I applied my model to the most recent NFL season, 2024, to gener
 
 The top 32 QBs for the 2025 season are shown below:
 
-![Top 32 QBs](results/top32_predictions.png)
+![Top 32 QB](results/top32_predictions.png)
 
 ## Required Libraries
 - Python 3.x
