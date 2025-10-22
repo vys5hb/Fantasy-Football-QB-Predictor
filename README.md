@@ -36,41 +36,45 @@ I engineered relevant features for more effective model training:
 - Created "NextYearFantPt/G" for prediction
 
 ## Feature Selection
-I used mlxtend's Sequential Feature Selector(SFS) to run a forward feature selection on all relevant quantitative variables. This helped me limit total training features to 15, to avoid multicollinearity and overfitting in my model. I evaluated the features using root mean squared error as my scoring variable.
+I used mlxtend's Sequential Feature Selector(SFS) to run a forward feature selection on all relevant quantitative variables. This helped me limit total training features to a range between 12 and 20, to avoid multicollinearity and overfitting in my model. I evaluated the features using root mean squared error as my scoring variable.
 
-The final 15 features selected were:
+The final 14 features selected were:
 
-`Selected Features: ['PassTDs', 'RushTDs', 'Fmb', '2PM', '2PP', 'PassTD/G', 'RushTD/G', 'AllPro', '#ofY', 'CompPropLast2Y', 'PassTD/GLast2Y', 'RushYds/GLast2Y', 'RushYds/GLast3Y', 'FantPts/GLast2Y', 'FantPts/GLast3Y']`
+`Selected Features: ['PassTDs', 'Fmb', 'FantPts', 'Year', 'PassTD/G', 'AllPro', '#ofY', 'CompPropLast2Y', 'PassAtts/GLast2Y', 'PassYds/GLast3Y', 'Turnovers/GLast2Y', 'Turnovers/GLast3Y', 'FantPts/GLast2Y', 'FantPts/GLast3Y']`
 
 ## Model Training
-I trained my model using XGBoost's Regressor (XGBRegressor) using my 15 selected features. 
+I trained my model using XGBoost's Regressor (XGBRegressor) using my 14 selected features. 
 
 To maximize performance and minimize overfitting, I split the dataset: 
-- 50% training
-- 35% validation
-- 15% testing
+- 60% training
+- 20% validation
+- 20% testing
 
-One key challenge was determining the most optimal hyperparameters for my model. I manually tuned parameters through trial and error. The use of early_stopping_rounds helped prevent some overfitting.
+One key challenge was determining the most optimal hyperparameters for my model. The use of lasso regularization, ridge regularization, gamma, subsampling, and early_stopping_rounds helped prevent some over fitting, correcting for variance while keeping bias minimal.
 
 The best configuration was:
-- n_estimators = 500
-- learning_rate = 0.04
-- max_depth = 6
-- early_stopping_rounds = 20
+- n_estimators = 400
+- learning_rate = 0.03
+- max_depth = 4
+- early_stopping_rounds = 30
+- reg_alpha = 1
+- reg_lambda = 4
+- gamma = 0.3
+- subsample = 0.8
+- colsample_bytree = 0.8
+- min_child_weight = 5
 
 ## Model Evaluation & Regression Results
 I evaluated my model using the regression results displayed below. I also visualized feature importance in [feature_importance.png](results/feature_importance.png).
 ![Feature Importance](results/feature_importance.png)
 
-`Testing RMSE = 3.38, Test MAE = 2.58, Test R2 = 0.31`
+`Training RMSE = 2.37, Train MAE = 1.88, Train R2 = 0.69`
+`Validation RMSE = 3.48, Validation MAE = 2.75, Validation R2 = 0.25`
+`Testing RMSE = 3.80, Test MAE = 3.02, Test R2 = 0.39`
 
-`Training RMSE = 0.97, Train MAE = 0.70, Train R2 = 0.95`
+To prevent overfitting, I tried to limit the gap between training to validation & testing regression outputs, even at the cost of hurting overall model performance. This is to allow the model to predict new data with lower variance than if there were to be a large gap between training to validation & testing regression outputs.
 
-My training R2 indicates that the model fits the training data well, explaining 95% of the variance in QB fantasy performance.
-
-My testing R2 indicates that on future data, my model explains 31% of variance in QB fantasy performance. The RMSE of 3.38 implies that my predictions, on average, will vary from the true value by 3.38 fantasy points per game.
-
-The gap between my training and testing regression outputs suggest that there is overfitting in my model. These could be due to the relatively small dataset, noisy data, or the unpredictable nature of NFL games. This model can still capture general trends that may differentiate high-performing QBs from low-performing QBs. 
+As the model prevents overfitting pretty well, the regression outputs are not optimal. This could be due to the relatively small dataset, noisy data, or the unpredictable nature of NFL games. This model can still capture general trends that may differentiate high-performing QBs from low-performing QBs. 
 
 Other features like strength of schedule, team performance, and injury history could improve testing performance. 
 
