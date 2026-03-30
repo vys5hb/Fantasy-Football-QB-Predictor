@@ -99,3 +99,4 @@ The top 32 QBs for the 2025 season are shown below:
 
 ```bash
 pip install pandas numpy xgboost==1.7.6 scikit-learn mlxtend matplotlib seaborn
+```
